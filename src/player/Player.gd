@@ -5,6 +5,7 @@ const MOVE_SPEED = 150
 # Networking
 var player_id
 var control = true
+var online = false
 
 func _ready():
 	yield(get_tree(), "idle_frame")
@@ -16,7 +17,7 @@ func _physics_process(delta):
 		
 		move(delta)
 	
-func move(delta):
+func move(_delta):
 	var move_vec = Vector2()
 	
 	if Input.is_action_pressed("move_up"):
@@ -31,7 +32,8 @@ func move(delta):
 	move_vec = move_vec.normalized() * MOVE_SPEED
 	move_and_slide(move_vec) # this already takes the delta into account
 	
-	rpc_unreliable("n_move", get_position(), global_rotation, player_id)
+	if online:
+		rpc_unreliable("n_move", get_position(), global_rotation, player_id)
 	
 remote func n_move(pos, rot, pid):
 	var root = get_parent()

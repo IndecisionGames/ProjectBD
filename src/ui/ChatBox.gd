@@ -38,10 +38,10 @@ func change_group(value):
 	inputLabel.text = '[' + groups[group_index]['name'] +']'
 	inputLabel.set('custom_colors/font_color', Color(groups[group_index]['color']))
 
-func add_message(username, text, group = 0, remote_msg = false):
+func add_message(_username, text, group = 0, remote_msg = false):
 	if len(text) > 0:
 		chatLog.bbcode_text += '[color=' + groups[group]['color'] +']'
-		chatLog.bbcode_text += '[' + username + ']: '
+		chatLog.bbcode_text += '[' + _username + ']: '
 		chatLog.bbcode_text += text
 		chatLog.bbcode_text += '[/color]'
 		chatLog.bbcode_text += '\n'
@@ -49,8 +49,8 @@ func add_message(username, text, group = 0, remote_msg = false):
 		if not remote_msg:
 			rpc_unreliable("n_add_message", username, text, group)
 
-remote func n_add_message(username, text, group):
-	add_message(username, text, group, true)
+remote func n_add_message(_username, text, group):
+	add_message(_username, text, group, true)
 
 func add_system_message(text):
 	if len(text) > 0:

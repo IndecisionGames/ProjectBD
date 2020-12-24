@@ -19,6 +19,12 @@ config/name="Project Bd"
 run/main_scene="res://src/Lobby.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/resizable=false
+
 [input]
 
 move_up={
