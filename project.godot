@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Bd"
-run/main_scene="res://src/Lobby.tscn"
+run/main_scene="res://src/Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+net="*res://src/net.gd"
 
 [display]
 
@@ -54,4 +58,5 @@ move_right={
 
 [rendering]
 
+environment/default_clear_color=Color( 1, 1, 1, 1 )
 environment/default_environment="res://default_env.tres"

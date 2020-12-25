@@ -1,6 +1,7 @@
 extends Node
 
 const DEFAULT_PORT = 31416
+const DEFAULT_IP = '127.0.0.1'
 const MAX_PEERS    = 16
 var   players      = {}
 var   player_name
@@ -13,28 +14,35 @@ func _ready():
 	get_tree().connect("connected_to_server", self, "_connected_ok")
 	get_tree().connect("connection_failed", self, "_connected_fail")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
-	# start_server()
 	
-func start_server():
-	player_name = 'Server'
+func start_server(name, port):
+	player_name = name
 	var host = NetworkedMultiplayerENet.new()
+
+	if port == "default":
+		port = DEFAULT_PORT
 	
-	var err = host.create_server(DEFAULT_PORT, MAX_PEERS)
+	var err = host.create_server(port, MAX_PEERS)
 	
 	if (err!=OK):
-		join_server()
 		return
 	
-	# chat.add_system_message("Server created")
+	chat.add_system_message("Server created on port " + port)
 	get_tree().set_network_peer(host)
 
 	spawn_player(1)
 	
-func join_server():
-	player_name = 'Client'
+func join_server(name, ip, port):
+	player_name = name
 	var host = NetworkedMultiplayerENet.new()
+
+	if ip == "default":
+		ip = DEFAULT_IP
 	
-	host.create_client('127.0.0.1', DEFAULT_PORT)
+	if port == "default":
+		port = DEFAULT_PORT
+
+	host.create_client(ip, port)
 	get_tree().set_network_peer(host)
 	
 func _player_connected(id):

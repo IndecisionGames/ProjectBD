@@ -1,0 +1,219 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/Main.gd" type="Script" id=1]
+[ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=4]
+size = 100
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0, 0, 0, 0.00392157 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 42
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 28
+font_data = ExtResource( 2 )
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_edit_use_anchors_": false
+}
+
+[node name="GUI" type="MarginContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1111.0
+custom_constants/margin_right = 450
+custom_constants/margin_top = 150
+custom_constants/margin_left = 450
+custom_constants/margin_bottom = 250
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+margin_left = 450.0
+margin_top = 150.0
+margin_right = 1470.0
+margin_bottom = 944.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="GUI/VBoxContainer"]
+margin_right = 1020.0
+margin_bottom = 188.0
+custom_constants/margin_bottom = 75
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/MarginContainer3"]
+margin_right = 1020.0
+margin_bottom = 113.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Project BD"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer"]
+margin_top = 192.0
+margin_right = 1020.0
+margin_bottom = 372.0
+custom_constants/margin_top = 50
+custom_constants/margin_bottom = 50
+
+[node name="Control2" type="Control" parent="GUI/VBoxContainer/MarginContainer"]
+margin_top = 50.0
+margin_right = 1020.0
+margin_bottom = 130.0
+
+[node name="Panel" type="Panel" parent="GUI/VBoxContainer/MarginContainer/Control2"]
+margin_left = -50.0
+margin_top = -25.0
+margin_right = 1070.0
+margin_bottom = 105.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="HBoxContainer" parent="GUI/VBoxContainer/MarginContainer"]
+margin_top = 50.0
+margin_right = 1020.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 0, 80 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/MarginContainer/Name"]
+margin_top = 12.0
+margin_right = 170.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Name: "
+
+[node name="LineEdit" type="LineEdit" parent="GUI/VBoxContainer/MarginContainer/Name"]
+margin_left = 174.0
+margin_right = 1020.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+max_length = 24
+placeholder_text = "Type your name here..."
+caret_blink = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer"]
+margin_top = 376.0
+margin_right = 1020.0
+margin_bottom = 790.0
+
+[node name="Control" type="Control" parent="GUI/VBoxContainer/VBoxContainer"]
+margin_right = 1020.0
+
+[node name="Panel" type="Panel" parent="GUI/VBoxContainer/VBoxContainer/Control"]
+margin_left = -50.0
+margin_top = -10.0
+margin_right = 1070.0
+margin_bottom = 440.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreateServer" type="HBoxContainer" parent="GUI/VBoxContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 1020.0
+margin_bottom = 165.0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/VBoxContainer/CreateServer"]
+margin_left = 444.0
+margin_right = 575.0
+margin_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/margin_top = 50
+custom_constants/margin_bottom = 50
+
+[node name="Button" type="Button" parent="GUI/VBoxContainer/VBoxContainer/CreateServer/MarginContainer"]
+margin_top = 50.0
+margin_right = 131.0
+margin_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 3 )
+text = "Host"
+
+[node name="MarginContainer2" type="MarginContainer" parent="GUI/VBoxContainer/VBoxContainer"]
+margin_top = 169.0
+margin_right = 1020.0
+margin_bottom = 414.0
+custom_constants/margin_top = 50
+custom_constants/margin_bottom = 50
+
+[node name="JoinServer" type="VBoxContainer" parent="GUI/VBoxContainer/VBoxContainer/MarginContainer2"]
+margin_top = 50.0
+margin_right = 1020.0
+margin_bottom = 195.0
+
+[node name="LineEdit2" type="LineEdit" parent="GUI/VBoxContainer/VBoxContainer/MarginContainer2/JoinServer"]
+margin_right = 1020.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+max_length = 24
+placeholder_text = "Enter server address..."
+caret_blink = true
+
+[node name="Button" type="Button" parent="GUI/VBoxContainer/VBoxContainer/MarginContainer2/JoinServer"]
+margin_top = 84.0
+margin_right = 1020.0
+margin_bottom = 145.0
+custom_fonts/font = SubResource( 3 )
+text = "Join"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -42.403
+margin_right = 341.0
+margin_bottom = 2.59705
+custom_constants/margin_left = 7
+custom_constants/margin_bottom = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer"]
+margin_left = 7.0
+margin_top = 3.0
+margin_right = 341.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
+text = "Indecision Games ©"

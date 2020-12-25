@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/ui/ChatBox.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/Network.gd" type="Script" id=2]
 [ext_resource path="res://src/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/test_map.jpg" type="Texture" id=4]
 
-[node name="Lobby" type="Node2D"]
+[node name="Lobby" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="test_map" type="Sprite" parent="."]
 visible = false
@@ -15,9 +17,6 @@ texture = ExtResource( 4 )
 offset = Vector2( 416.079, -17.8716 )
 region_enabled = true
 region_rect = Rect2( 558, 25, 340, 330 )
-
-[node name="NetworkLobby" type="Node" parent="."]
-script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 412.138, 269.871 )
