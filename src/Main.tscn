@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Main.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
@@ -32,6 +32,10 @@ size = 48
 use_filter = true
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=7]
+size = 26
+font_data = ExtResource( 2 )
+
 [sub_resource type="DynamicFont" id=6]
 size = 28
 font_data = ExtResource( 2 )
@@ -46,6 +50,7 @@ __meta__ = {
 }
 
 [node name="GUI" type="MarginContainer" parent="."]
+anchor_bottom = 0.0768519
 margin_right = 1920.0
 margin_bottom = 1111.0
 custom_constants/margin_right = 450
@@ -56,18 +61,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+[node name="Container" type="VBoxContainer" parent="GUI"]
 margin_left = 450.0
 margin_top = 150.0
 margin_right = 1470.0
 margin_bottom = 944.0
 
-[node name="MarginContainer3" type="MarginContainer" parent="GUI/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="GUI/Container"]
 margin_right = 1020.0
 margin_bottom = 188.0
 custom_constants/margin_bottom = 75
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/MarginContainer3"]
+[node name="Label" type="Label" parent="GUI/Container/MarginContainer3"]
 margin_right = 1020.0
 margin_bottom = 113.0
 custom_fonts/font = SubResource( 4 )
@@ -75,19 +80,19 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Project BD"
 align = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Container"]
 margin_top = 192.0
 margin_right = 1020.0
 margin_bottom = 372.0
 custom_constants/margin_top = 50
 custom_constants/margin_bottom = 50
 
-[node name="Control2" type="Control" parent="GUI/VBoxContainer/MarginContainer"]
+[node name="Control2" type="Control" parent="GUI/Container/MarginContainer"]
 margin_top = 50.0
 margin_right = 1020.0
 margin_bottom = 130.0
 
-[node name="Panel" type="Panel" parent="GUI/VBoxContainer/MarginContainer/Control2"]
+[node name="Panel" type="Panel" parent="GUI/Container/MarginContainer/Control2"]
 margin_left = -50.0
 margin_top = -25.0
 margin_right = 1070.0
@@ -97,7 +102,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="HBoxContainer" parent="GUI/VBoxContainer/MarginContainer"]
+[node name="Name" type="HBoxContainer" parent="GUI/Container/MarginContainer"]
 margin_top = 50.0
 margin_right = 1020.0
 margin_bottom = 130.0
@@ -106,7 +111,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="GUI/VBoxContainer/MarginContainer/Name"]
+[node name="Label" type="Label" parent="GUI/Container/MarginContainer/Name"]
 margin_top = 12.0
 margin_right = 170.0
 margin_bottom = 67.0
@@ -114,7 +119,7 @@ custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Name: "
 
-[node name="LineEdit" type="LineEdit" parent="GUI/VBoxContainer/MarginContainer/Name"]
+[node name="NameText" type="LineEdit" parent="GUI/Container/MarginContainer/Name"]
 margin_left = 174.0
 margin_right = 1020.0
 margin_bottom = 80.0
@@ -125,15 +130,15 @@ max_length = 24
 placeholder_text = "Type your name here..."
 caret_blink = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Container"]
 margin_top = 376.0
 margin_right = 1020.0
-margin_bottom = 790.0
+margin_bottom = 794.0
 
-[node name="Control" type="Control" parent="GUI/VBoxContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="GUI/Container/VBoxContainer"]
 margin_right = 1020.0
 
-[node name="Panel" type="Panel" parent="GUI/VBoxContainer/VBoxContainer/Control"]
+[node name="Panel" type="Panel" parent="GUI/Container/VBoxContainer/Control"]
 margin_left = -50.0
 margin_top = -10.0
 margin_right = 1070.0
@@ -143,13 +148,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CreateServer" type="HBoxContainer" parent="GUI/VBoxContainer/VBoxContainer"]
+[node name="CreateServer" type="HBoxContainer" parent="GUI/Container/VBoxContainer"]
 margin_top = 4.0
 margin_right = 1020.0
 margin_bottom = 165.0
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/VBoxContainer/CreateServer"]
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Container/VBoxContainer/CreateServer"]
 margin_left = 444.0
 margin_right = 575.0
 margin_bottom = 161.0
@@ -158,7 +163,7 @@ grow_vertical = 2
 custom_constants/margin_top = 50
 custom_constants/margin_bottom = 50
 
-[node name="Button" type="Button" parent="GUI/VBoxContainer/VBoxContainer/CreateServer/MarginContainer"]
+[node name="Host" type="Button" parent="GUI/Container/VBoxContainer/CreateServer/MarginContainer"]
 margin_top = 50.0
 margin_right = 131.0
 margin_bottom = 111.0
@@ -167,19 +172,18 @@ grow_vertical = 2
 custom_fonts/font = SubResource( 3 )
 text = "Host"
 
-[node name="MarginContainer2" type="MarginContainer" parent="GUI/VBoxContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="GUI/Container/VBoxContainer"]
 margin_top = 169.0
 margin_right = 1020.0
-margin_bottom = 414.0
+margin_bottom = 364.0
 custom_constants/margin_top = 50
-custom_constants/margin_bottom = 50
 
-[node name="JoinServer" type="VBoxContainer" parent="GUI/VBoxContainer/VBoxContainer/MarginContainer2"]
+[node name="JoinServer" type="VBoxContainer" parent="GUI/Container/VBoxContainer/MarginContainer2"]
 margin_top = 50.0
 margin_right = 1020.0
 margin_bottom = 195.0
 
-[node name="LineEdit2" type="LineEdit" parent="GUI/VBoxContainer/VBoxContainer/MarginContainer2/JoinServer"]
+[node name="ServerAddress" type="LineEdit" parent="GUI/Container/VBoxContainer/MarginContainer2/JoinServer"]
 margin_right = 1020.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 0, 80 )
@@ -190,12 +194,27 @@ max_length = 24
 placeholder_text = "Enter server address..."
 caret_blink = true
 
-[node name="Button" type="Button" parent="GUI/VBoxContainer/VBoxContainer/MarginContainer2/JoinServer"]
+[node name="Join" type="Button" parent="GUI/Container/VBoxContainer/MarginContainer2/JoinServer"]
 margin_top = 84.0
 margin_right = 1020.0
 margin_bottom = 145.0
 custom_fonts/font = SubResource( 3 )
 text = "Join"
+
+[node name="MarginContainer3" type="MarginContainer" parent="GUI/Container/VBoxContainer"]
+margin_top = 368.0
+margin_right = 1020.0
+margin_bottom = 418.0
+custom_constants/margin_top = 20
+
+[node name="Error" type="Label" parent="GUI/Container/VBoxContainer/MarginContainer3"]
+margin_top = 20.0
+margin_right = 1020.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.772549, 0.0980392, 0.0980392, 1 )
+text = "Error"
+align = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_top = 1.0
@@ -217,3 +236,5 @@ margin_bottom = 35.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
 text = "Indecision Games ©"
+[connection signal="pressed" from="GUI/Container/VBoxContainer/CreateServer/MarginContainer/Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="GUI/Container/VBoxContainer/MarginContainer2/JoinServer/Join" to="." method="_on_Join_pressed"]

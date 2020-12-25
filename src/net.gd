@@ -27,7 +27,7 @@ func start_server(name, port):
 	if (err!=OK):
 		return
 	
-	chat.add_system_message("Server created on port " + port)
+	chat.add_system_message("Server created on port " + str(port))
 	get_tree().set_network_peer(host)
 
 	spawn_player(1)
