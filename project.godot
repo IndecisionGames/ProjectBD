@@ -21,7 +21,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-net="*res://src/net.gd"
+LoadingScreen="*res://src/LoadingScreen.tscn"
+SceneManager="*res://src/SceneManager.gd"
+Net="*res://src/Net.gd"
 
 [display]
 

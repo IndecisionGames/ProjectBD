@@ -3,11 +3,11 @@
 [ext_resource path="res://src/Main.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 size = 100
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 0.00392157 )
 border_width_left = 3
 border_width_top = 3
@@ -16,27 +16,27 @@ border_width_bottom = 3
 border_color = Color( 0, 0, 0, 1 )
 border_blend = true
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 48
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 42
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 48
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=6]
 size = 26
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 28
 font_data = ExtResource( 2 )
 
@@ -75,7 +75,7 @@ custom_constants/margin_bottom = 75
 [node name="Label" type="Label" parent="GUI/Container/MarginContainer3"]
 margin_right = 1020.0
 margin_bottom = 113.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Project BD"
 align = 1
@@ -97,7 +97,7 @@ margin_left = -50.0
 margin_top = -25.0
 margin_right = 1070.0
 margin_bottom = 105.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -115,7 +115,7 @@ __meta__ = {
 margin_top = 12.0
 margin_right = 170.0
 margin_bottom = 67.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Name: "
 
@@ -125,7 +125,7 @@ margin_right = 1020.0
 margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 max_length = 24
 placeholder_text = "Type your name here..."
 caret_blink = true
@@ -143,7 +143,7 @@ margin_left = -50.0
 margin_top = -10.0
 margin_right = 1070.0
 margin_bottom = 440.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -169,7 +169,7 @@ margin_right = 131.0
 margin_bottom = 111.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Host"
 
 [node name="MarginContainer2" type="MarginContainer" parent="GUI/Container/VBoxContainer"]
@@ -189,7 +189,7 @@ margin_bottom = 80.0
 rect_min_size = Vector2( 0, 80 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 max_length = 24
 placeholder_text = "Enter server address..."
 caret_blink = true
@@ -198,7 +198,7 @@ caret_blink = true
 margin_top = 84.0
 margin_right = 1020.0
 margin_bottom = 145.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 text = "Join"
 
 [node name="MarginContainer3" type="MarginContainer" parent="GUI/Container/VBoxContainer"]
@@ -211,7 +211,7 @@ custom_constants/margin_top = 20
 margin_top = 20.0
 margin_right = 1020.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0.772549, 0.0980392, 0.0980392, 1 )
 text = "Error"
 align = 1
@@ -233,7 +233,7 @@ margin_left = 7.0
 margin_top = 3.0
 margin_right = 341.0
 margin_bottom = 35.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 0.392157 )
 text = "Indecision Games ©"
 [connection signal="pressed" from="GUI/Container/VBoxContainer/CreateServer/MarginContainer/Host" to="." method="_on_Host_pressed"]

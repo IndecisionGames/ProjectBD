@@ -5,8 +5,7 @@ const DEFAULT_IP = '127.0.0.1'
 const MAX_PEERS    = 16
 var   players      = {}
 var   player_name
-
-onready var chat = find_node("ChatBox")
+var   chat
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -27,8 +26,10 @@ func start_server(name, port):
 	if (err!=OK):
 		return
 	
-	chat.add_system_message("Server created on port " + str(port))
 	get_tree().set_network_peer(host)
+	load_lobby_scene()
+	chat = find_node("ChatBox")
+	#chat.add_system_message("Server created on port " + str(port))
 
 	spawn_player(1)
 	
@@ -36,7 +37,7 @@ func join_server(name, ip, port):
 	player_name = name
 	var host = NetworkedMultiplayerENet.new()
 
-	if ip == "default":
+	if ip == "default" or ip == "0" or ip == "localhost":
 		ip = DEFAULT_IP
 	
 	if port == "default":
@@ -44,6 +45,9 @@ func join_server(name, ip, port):
 
 	host.create_client(ip, port)
 	get_tree().set_network_peer(host)
+	load_lobby_scene()
+	chat = find_node("ChatBox")
+	chat.add_system_message("Joined server")
 	
 func _player_connected(id):
 	# Called on both clients and server when a peer connects. Send my info to it.
@@ -128,3 +132,6 @@ func spawn_player(id):
 			
 	#get_node("/root/World/Entities/Characters").call_deferred('add_child', player)
 	print('Spawned Player at:', player.get_position())
+
+func load_lobby_scene():
+	SceneManager.goto_scene("res://src/Lobby.tscn")

@@ -14,9 +14,7 @@ func _on_Host_pressed():
 	var check = check_name(name)
 
 	if check:
-		#start_server(name, "default")
-		errorText.text = "NOT YET IMPLEMENTED"
-		errorText.visible = true
+		start_server(name, "default")
 
 func _on_Join_pressed():
 	var name = nameText.text.strip_edges()
@@ -24,15 +22,13 @@ func _on_Join_pressed():
 	var check = check_name(name) and check_address(address)
 	
 	if check:
-		#join_server(name, address, "default")
-		errorText.text = "NOT YET IMPLEMENTED"
-		errorText.visible = true
+		join_server(name, address, "default")
 
 func start_server(name, port):
-	net.start_server(name, port)
+	Net.start_server(name, port)
 
 func join_server(name, ip, port):
-	net.join_server(name, ip, port)
+	Net.join_server(name, ip, port)
 
 func check_name(name):
 	if name.length() == 0:
