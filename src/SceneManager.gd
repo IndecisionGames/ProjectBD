@@ -2,7 +2,7 @@ extends Node
 
 var loader
 var wait_frames
-var time_max = 1000 # msec
+var time_max = 100 # msec
 var current_scene
 
 func _ready():
@@ -40,6 +40,7 @@ func _process(time):
 		var err = loader.poll()
 	
 		if err == ERR_FILE_EOF: # Finished loading.
+			LoadingScreen.set_progress(1.0)	
 			var resource = loader.get_resource()
 			loader = null
 			set_new_scene(resource)
@@ -53,10 +54,11 @@ func _process(time):
 
 func update_progress():
 	var progress = float(loader.get_stage()) / loader.get_stage_count()
-	# Update your progress bar?
+	# Update your progress bar
 	LoadingScreen.set_progress(progress)			
 			
 func set_new_scene(scene_resource):
+	yield(get_tree().create_timer(1), "timeout")
 	LoadingScreen.visible = false
 	LoadingScreen.reset()
 	current_scene = scene_resource.instance()
