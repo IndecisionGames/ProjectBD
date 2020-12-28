@@ -49,6 +49,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1073.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GUI" type="MarginContainer" parent="."]
 anchor_bottom = 0.0768519
 margin_right = 1920.0

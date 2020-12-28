@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 LoadingScreen="*res://src/LoadingScreen.tscn"
 SceneManager="*res://src/SceneManager.gd"
 Net="*res://src/Net.gd"
+Chat="*res://src/ui/ChatBox.tscn"
 
 [display]
 
@@ -60,5 +61,5 @@ move_right={
 
 [rendering]
 
-environment/default_clear_color=Color( 1, 1, 1, 1 )
+environment/default_clear_color=Color( 0.188235, 0.188235, 0.188235, 1 )
 environment/default_environment="res://default_env.tres"

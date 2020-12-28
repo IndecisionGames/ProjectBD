@@ -1,8 +1,9 @@
-extends Control
+extends Node
 
-onready var chatLog = get_node("VBoxContainer/RichTextLabel")
-onready var inputLabel = get_node("VBoxContainer/HBoxContainer/Label")
-onready var inputField = get_node("VBoxContainer/HBoxContainer/LineEdit")
+onready var chatBox = get_node("ChatBox")
+onready var chatLog = get_node("ChatBox/VBoxContainer/RichTextLabel")
+onready var inputLabel = get_node("ChatBox/VBoxContainer/HBoxContainer/Label")
+onready var inputField = get_node("ChatBox/VBoxContainer/HBoxContainer/LineEdit")
 
 var groups = [
 	{'name': 'All', 'color': '#ffffff'},
@@ -12,13 +13,24 @@ var system_color = '#f1c234'
 var group_index = 0
 
 var username = "Player"
+var enabled = true
+
+func set_username(name):
+	username = name
+
+func set_enabled(b):
+	chatBox.visible = b
+	enabled = b
+	if not b:
+		inputField.release_focus()
 
 func _ready():
 	inputField.connect("text_entered", self, "text_entered")
 	change_group(0)
+	set_enabled(false)
 
 func _input(event):
-	if event is InputEventKey:
+	if event is InputEventKey and enabled:
 		if event.pressed and event.scancode == KEY_ENTER:
 			if inputField.has_focus() and len(inputField.text) == 0:
 				inputField.release_focus()

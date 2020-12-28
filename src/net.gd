@@ -5,7 +5,6 @@ const DEFAULT_IP = '127.0.0.1'
 const MAX_PEERS    = 16
 var   players      = {}
 var   player_name
-var   chat
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -16,6 +15,7 @@ func _ready():
 	
 func start_server(name, port):
 	player_name = name
+	Chat.set_username(name)
 	var host = NetworkedMultiplayerENet.new()
 
 	if port == "default":
@@ -28,13 +28,13 @@ func start_server(name, port):
 	
 	get_tree().set_network_peer(host)
 	load_lobby_scene()
-	chat = find_node("ChatBox")
-	#chat.add_system_message("Server created on port " + str(port))
+	Chat.add_system_message("Server created on port " + str(port))
 
 	spawn_player(1)
 	
 func join_server(name, ip, port):
 	player_name = name
+	Chat.set_username(name)
 	var host = NetworkedMultiplayerENet.new()
 
 	if ip == "default" or ip == "0" or ip == "localhost":
@@ -46,8 +46,7 @@ func join_server(name, ip, port):
 	host.create_client(ip, port)
 	get_tree().set_network_peer(host)
 	load_lobby_scene()
-	chat = find_node("ChatBox")
-	chat.add_system_message("Joined server")
+	Chat.add_system_message("Joined server")
 	
 func _player_connected(id):
 	# Called on both clients and server when a peer connects. Send my info to it.
@@ -62,7 +61,7 @@ func _player_disconnected(id):
 
 func _connected_ok():
 	var server_owner = str(get_node("/root/Lobby").get_network_master())
-	chat.add_system_message("Joined " + server_owner + "'s server.") # Only called on clients, not server.
+	Chat.add_system_message("Joined " + server_owner + "'s server.") # Only called on clients, not server.
 	rpc_id(1, "user_ready", get_tree().get_network_unique_id(), player_name)
 
 remote func user_ready(id, _name):
@@ -74,7 +73,7 @@ remote func register_in_game():
 	register_new_player(get_tree().get_network_unique_id(), player_name)
 
 func _server_disconnected():
-	chat.add_system_message("Server disconnected.")
+	Chat.add_system_message("Server disconnected.")
 	quit_game()
 
 func _connected_fail():
@@ -108,10 +107,10 @@ remote func unregister_player(id):
 	players.erase(id)
 
 func add_to_lobby(id):
-	chat.add_system_message("Player " + str(id) + " joined.")
+	Chat.add_system_message("Player " + str(id) + " joined.")
 	
 func remove_from_lobby(id):
-	chat.add_system_message("Player " + str(id) + " left.")
+	Chat.add_system_message("Player " + str(id) + " left.")
 
 func quit_game():
 	get_tree().set_network_peer(null)
