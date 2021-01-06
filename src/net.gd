@@ -1,10 +1,11 @@
 extends Node
 
 const DEFAULT_PORT = 31416
-const DEFAULT_IP = '127.0.0.1'
+const DEFAULT_IP   = '127.0.0.1'
 const MAX_PEERS    = 16
 var   players      = {}
 var   player_name
+var	  status       = 0	# 0 - nothing, 1 - connecting.., -1 - failed to join server
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_player_connected")
@@ -14,6 +15,7 @@ func _ready():
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 	
 func start_server(name, port):
+	status = 1
 	player_name = name
 	Chat.set_username(name)
 	var host = NetworkedMultiplayerENet.new()
@@ -26,6 +28,7 @@ func start_server(name, port):
 	if (err!=OK):
 		return
 	
+	status = 0
 	get_tree().set_network_peer(host)
 	load_lobby_scene()
 	Chat.add_system_message("Server created on port " + str(port))
@@ -33,6 +36,7 @@ func start_server(name, port):
 	spawn_player(1)
 	
 func join_server(name, ip, port):
+	status = 1
 	player_name = name
 	Chat.set_username(name)
 	var host = NetworkedMultiplayerENet.new()
@@ -44,9 +48,8 @@ func join_server(name, ip, port):
 		port = DEFAULT_PORT
 
 	host.create_client(ip, port)
+
 	get_tree().set_network_peer(host)
-	load_lobby_scene()
-	Chat.add_system_message("Joined server")
 	
 func _player_connected(id):
 	# Called on both clients and server when a peer connects. Send my info to it.
@@ -58,12 +61,17 @@ func _player_disconnected(id):
 	players.erase(id) # Erase player from info.
 	remove_from_lobby(id)
 
-
 func _connected_ok():
+	status = 0
+	load_lobby_scene()
 	var server_owner = str(get_node("/root/Lobby").get_network_master())
 	Chat.add_system_message("Joined " + server_owner + "'s server.") # Only called on clients, not server.
 	rpc_id(1, "user_ready", get_tree().get_network_unique_id(), player_name)
 
+func _connected_fail():
+	# Could not connect to server.
+	status = -1	
+		
 remote func user_ready(id, _name):
 	if get_tree().is_network_server():
 		rpc_id(id, "register_in_game")
@@ -75,9 +83,6 @@ remote func register_in_game():
 func _server_disconnected():
 	Chat.add_system_message("Server disconnected.")
 	quit_game()
-
-func _connected_fail():
-	pass # Could not even connect to server; abort.
 
 remote func register_new_player(id, name):
 	if get_tree().is_network_server():

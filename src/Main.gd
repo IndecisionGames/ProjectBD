@@ -45,3 +45,11 @@ func check_address(address):
 		return false
 	errorText.visible = false
 	return true
+
+func _process(_delta):
+	if Net.status == 1:
+		errorText.text = "Connecting..."
+		errorText.visible = true
+	if Net.status == -1:
+		errorText.text = "Failed to connect, make sure the server address is correct."
+		errorText.visible = true
