@@ -10,6 +10,7 @@ var groups = [
 	{'name': 'Team', 'color': '#34c5f1'}
 ]
 var system_color = '#f1c234'
+var response_color = '#ffffff'
 var group_index = 0
 
 var username = "Player"
@@ -71,8 +72,22 @@ func add_system_message(text):
 		chatLog.bbcode_text += '[/color]'
 		chatLog.bbcode_text += '\n'
 
+func add_command_message(text1, text2):
+	if len(text1) > 0 and len(text2) > 0:
+		chatLog.bbcode_text += '[color=' + system_color +']'
+		chatLog.bbcode_text += text1
+		chatLog.bbcode_text += '[/color]'
+		chatLog.bbcode_text += '[color=' + response_color +']'
+		chatLog.bbcode_text += text2
+		chatLog.bbcode_text += '[/color]'
+		chatLog.bbcode_text += '\n'
+
 func text_entered(text):
-	add_message(username, text, group_index)
+	if text.left(1) == "/":
+		var res = Commands.process_command(text.substr(1))
+		add_command_message(res[0], res[1])
+	else:
+		add_message(username, text, group_index)
 	inputField.text = ''
 	if len(text) > 0:
 		inputField.release_focus()

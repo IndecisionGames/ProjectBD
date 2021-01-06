@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 LoadingScreen="*res://src/LoadingScreen.tscn"
 SceneManager="*res://src/SceneManager.gd"
 Net="*res://src/Net.gd"
+Commands="*res://src/Commands.gd"
 Chat="*res://src/ui/ChatBox.tscn"
 
 [display]

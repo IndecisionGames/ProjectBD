@@ -50,7 +50,7 @@ func join_server(name, ip, port):
 	
 func _player_connected(id):
 	# Called on both clients and server when a peer connects. Send my info to it.
-	rpc_id(id, "register_player", player_name)
+	rpc_id(id, "register_player", get_tree().get_network_unique_id(), player_name)
 
 func _player_disconnected(id):
 	unregister_player(id)
@@ -89,14 +89,7 @@ remote func register_new_player(id, name):
 	players[id] = name
 	spawn_player(id)
 	
-remote func register_player(id, name):
-	if get_tree().is_network_server() or id == 1:
-		rpc_id(id, "register_player", 1, player_name)
-		
-		for peer_id in players:
-			rpc_id(id, "register_player", peer_id, players[peer_id])
-			rpc_id(peer_id, "register_player", id, name)
-			
+remote func register_player(id, name):			
 	players[id] = name
 
 	# Call function to update lobby UI here
